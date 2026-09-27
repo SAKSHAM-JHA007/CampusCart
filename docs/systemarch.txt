@@ -1,0 +1,67 @@
+                         ┌──────────────────────┐
+                         │      USER / STUDENT  │
+                         │  Mobile / Laptop     │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                 ┌────────────────────────────────┐
+                 │         FRONTEND                │
+                 │                                │
+                 │ HTML + CSS + JavaScript        │
+                 │ React.js + Next.js             │
+                 │                                │
+                 │ • Login / Signup               │
+                 │ • Product Listing              │
+                 │ • Search & Filters             │
+                 │ • Product Details              │
+                 │ • Cart                         │
+                 │ • Checkout                     │
+                 │ • Profile                      │
+                 │ • My Products                  │
+                 │ • Order History                │
+                 └───────────────┬────────────────┘
+                                 │
+                           REST API / HTTP
+                                 │
+                                 ▼
+                 ┌────────────────────────────────┐
+                 │          BACKEND               │
+                 │                                │
+                 │ Node.js + Next.js              │
+                 │ REST APIs                      │
+                 │                                │
+                 │ • Authentication               │
+                 │ • User Management              │
+                 │ • Product Management            │
+                 │ • Cart & Checkout              │
+                 │ • Order Management             │
+                 │ • Location-based Search        │
+                 │ • Seller/Buyer Communication   │
+                 └───────────────┬────────────────┘
+                                 │
+                           SQL Queries
+                                 │
+                                 ▼
+                 ┌────────────────────────────────┐
+                 │          DATABASE              │
+                 │                                │
+                 │           MySQL                │
+                 │                                │
+                 │ • Users                        │
+                 │ • Colleges                     │
+                 │ • Products                     │
+                 │ • Categories                   │
+                 │ • Orders                       │
+                 │ • Cart                         │
+                 │ • Locations                    │
+                 │ • Reviews                      │
+                 └────────────────────────────────┘
+
+
+        ┌───────────────────────────────────────────────┐
+        │              EXTERNAL SERVICES                │
+        │                                               │
+        │  Location / Maps API     Payment Gateway      │
+        │  Email / Notifications    Image Storage       │
+        └───────────────────────────────────────────────┘
+

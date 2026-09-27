@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CampusCart - Sell Your Gear | BMSIT Yelahanka</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        handwriting: ['"Caveat"', 'cursive'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',
+                            orange: '#f95721',
+                            peach: '#ffece3',
+                            mint: '#dff6e9',
+                            sky: '#e4f1ff',
+                            blue: '#0284c7',
+                            green: '#16a34a',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+
+<body class="bg-[#f8fafc] text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-[#ffece3] selection:text-[#f95721]">
+    <!-- Ambient top glow -->
+    <div class="fixed top-0 left-0 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="fixed top-0 right-0 w-96 h-96 bg-emerald-100/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <!-- Navigation Header -->
+    <header class="w-full bg-white border-b border-slate-100 sticky top-0 z-40">
+        <div class="max-w-[1340px] mx-auto px-6 h-20 flex items-center justify-between gap-6">
+            <!-- Brand Logo -->
+            <a href="homepageUI.html" class="flex items-center gap-2 shrink-0">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-[#f95721]">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"/>
+                        <circle cx="19" cy="21" r="1"/>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                    </svg>
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight text-slate-900">
+                    Campus<span class="text-[#f95721]">Cart</span>
+                </span>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+                <a href="homepageUI.html" class="text-slate-500 hover:text-slate-900 transition-colors pb-1">Home</a>
+                <a href="buy.html" class="text-slate-500 hover:text-slate-900 transition-colors pb-1">Browse</a>
+                <a href="sell.html" class="text-slate-900 border-b-2 border-slate-900 pb-1">Sell</a>
+                <a href="#about" class="text-slate-500 hover:text-slate-900 transition-colors pb-1">About</a>
+            </nav>
+
+            <!-- Search & User Profile -->
+            <div class="flex items-center gap-3">
+                <div class="hidden sm:flex items-center bg-slate-50 border border-slate-200/80 rounded-full px-4 py-2 w-72 lg:w-80 transition-all focus-within:border-slate-400 focus-within:bg-white focus-within:shadow-sm">
+                    <span class="material-symbols-outlined text-slate-400 text-[18px] mr-2 shrink-0">search</span>
+                    <input type="text"
+                        placeholder="Search for books, mattresses, appliances..."
+                        class="w-full bg-transparent text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none"
+                        onkeydown="if(event.key==='Enter') window.location.href='buy.html?search=' + encodeURIComponent(this.value);" />
+                </div>
+
+                <!-- User Profile Button -->
+                <button onclick="handleUserClick()" id="btnProfileNav" class="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-colors cursor-pointer" title="Student Profile">
+                    <span class="material-symbols-outlined text-[20px]" id="userNavIcon">person</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Seller Studio Content -->
+    <main class="w-full py-8">
+        <div class="max-w-[1300px] mx-auto px-6">
+            
+            <!-- Page Title Header -->
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#dff6e9] text-[#16a34a] text-xs font-bold uppercase tracking-wider mb-2">
+                        <span class="material-symbols-outlined text-[16px]">storefront</span>
+                        <span>Student Seller Studio</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        List Your Gear in <span class="text-[#f95721]">Minutes</span>
+                    </h1>
+                    <p class="text-sm text-slate-500 mt-1 max-w-xl">
+                        Pass down your textbooks, mattresses, induction stoves, and notes directly to juniors. Zero shipping hassle, verified student safety.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-3 bg-white p-3 px-4 rounded-2xl border border-slate-100 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-[#ffece3] text-[#f95721] flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[22px]">pace</span>
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold text-slate-900">Avg 12 Hours</div>
+                        <div class="text-xs text-slate-500">Time to first inquiry</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two-Column Form & Live Preview Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left: Form (7 cols) -->
+                <form id="sellForm" onsubmit="event.preventDefault(); handlePublish();" class="lg:col-span-7 flex flex-col gap-6">
+                    
+                    <!-- 1. Photos & Media -->
+                    <div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-4">
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-7 h-7 rounded-lg bg-[#f95721] text-white flex items-center justify-center font-bold text-xs">1</div>
+                                <h2 class="text-lg font-bold text-slate-900">Item Photos &amp; Image</h2>
+                            </div>
+                            <span class="text-xs font-bold text-[#16a34a] bg-[#dff6e9] px-2.5 py-1 rounded-full">Live Preview Active</span>
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <label class="text-xs font-bold text-slate-700" for="itemImageInput">
+                                Image URL or Upload File
+                            </label>
+                            <div class="flex gap-2">
+                                <input type="url" id="itemImageInput"
+                                    placeholder="Paste image link here..."
+                                    value="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80"
+                                    class="flex-1 px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#f95721] focus:bg-white transition-all text-slate-800" />
+                                <label class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl cursor-pointer flex items-center gap-1.5 font-bold text-xs transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">upload_file</span>
+                                    <span>Browse</span>
+                                    <input type="file" id="filePicker" accept="image/*" class="hidden" />
+                                </label>
+                            </div>
+
+                            <!-- Quick Preset Photo Buttons -->
+                            <div class="flex flex-wrap items-center gap-2 pt-1">
+                                <span class="text-[11px] font-bold text-slate-400">Quick Presets:</span>
+                                <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80')" class="text-xs px-2.5 py-1 bg-slate-50 hover:bg-slate-100 rounded-full text-slate-700 font-medium border border-slate-200/80">📚 Textbooks</button>
+                                <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=600&q=80')" class="text-xs px-2.5 py-1 bg-slate-50 hover:bg-slate-100 rounded-full text-slate-700 font-medium border border-slate-200/80">🛏️ Mattress</button>
+                                <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=600&q=80')" class="text-xs px-2.5 py-1 bg-slate-50 hover:bg-slate-100 rounded-full text-slate-700 font-medium border border-slate-200/80">⚡ Kettle</button>
+                                <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80')" class="text-xs px-2.5 py-1 bg-slate-50 hover:bg-slate-100 rounded-full text-slate-700 font-medium border border-slate-200/80">🍳 Induction</button>
+                                <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80')" class="text-xs px-2.5 py-1 bg-slate-50 hover:bg-slate-100 rounded-full text-slate-700 font-medium border border-slate-200/80">📐 Drafter Set</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Item Details -->
+                    <div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-4">
+                        <div class="flex items-center gap-2.5 pb-2 border-b border-slate-100">
+                            <div class="w-7 h-7 rounded-lg bg-[#f95721] text-white flex items-center justify-center font-bold text-xs">2</div>
+                            <h2 class="text-lg font-bold text-slate-900">Item Details</h2>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-xs font-bold text-slate-700" for="itemTitleInput">
+                                Item Title <span class="text-[#f95721]">*</span>
+                            </label>
+                            <input type="text" id="itemTitleInput" required
+                                placeholder="e.g. VTU 3rd & 4th Sem CSE Textbooks + Lab Manuals"
+                                value="VTU 3rd & 4th Sem CSE Textbooks + Lab Manuals"
+                                class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#f95721] focus:bg-white transition-all text-slate-800 font-medium" />
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-xs font-bold text-slate-700" for="categoryInput">Category</label>
+                            <div class="relative">
+                                <select id="categoryInput"
+                                    class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#f95721] focus:bg-white transition-all text-slate-800 font-medium appearance-none cursor-pointer">
+                                    <option selected>Books &amp; Notes</option>
+                                    <option>Hostel Essentials</option>
+                                    <option>Appliances</option>
+                                    <option>Electronics</option>
+                                    <option>Lab &amp; Drafter</option>
+                                    <option>Furniture</option>
+                                    <option>Donate (Free)</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-3 top-3 text-slate-400 text-[18px] pointer-events-none">expand_more</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-xs font-bold text-slate-700">Item Condition</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="conditionGroup">
+                                <button type="button" onclick="setCondition('Brand New', this)" class="py-2 px-3 text-xs font-bold rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all">Brand New</button>
+                                <button type="button" onclick="setCondition('Like New', this)" class="py-2 px-3 text-xs font-bold rounded-xl bg-[#f95721] text-white shadow-sm transition-all">Like New</button>
+                                <button type="button" onclick="setCondition('Good', this)" class="py-2 px-3 text-xs font-bold rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all">Good</button>
+                                <button type="button" onclick="setCondition('Fair', this)" class="py-2 px-3 text-xs font-bold rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all">Fair</button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-xs font-bold text-slate-700" for="descInput">Description &amp; Highlights</label>
+                            <textarea id="descInput" rows="3"
+                                placeholder="Mention branch, syllabus highlights, or why you're passing it down..."
+                                class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#f95721] focus:bg-white transition-all text-slate-800">Used for VTU 3rd & 4th Sem CSE at BMSIT. Textbooks are clean with syllabus-relevant highlights. Complete set includes Discrete Mathematics, Data Structures, and Operating Systems.</textarea>
+                        </div>
+                    </div>
+
+                    <!-- 3. Pricing & Negotiation -->
+                    <div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-4">
+                        <div class="flex items-center gap-2.5 pb-2 border-b border-slate-100">
+                            <div class="w-7 h-7 rounded-lg bg-[#f95721] text-white flex items-center justify-center font-bold text-xs">3</div>
+                            <h2 class="text-lg font-bold text-slate-900">Pricing (₹)</h2>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold text-slate-700" for="priceInput">Listing Price (₹) <span class="text-[#f95721]">*</span></label>
+                                <div class="relative flex items-center">
+                                    <span class="absolute left-3.5 font-bold text-[#f95721]">₹</span>
+                                    <input type="number" id="priceInput" min="0" step="1" value="450" required
+                                        class="w-full pl-8 pr-3.5 py-2.5 text-base font-extrabold bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#f95721] focus:bg-white transition-all text-slate-900" />
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold text-slate-400" for="originalPriceInput">Original Retail / MRP (₹)</label>
+                                <div class="relative flex items-center">
+                                    <span class="absolute left-3.5 font-bold text-slate-400">₹</span>
+                                    <input type="number" id="originalPriceInput" min="0" step="1" value="1400"
+                                        class="w-full pl-8 pr-3.5 py-2.5 text-base font-medium bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#f95721] focus:bg-white transition-all text-slate-600" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition-colors border border-slate-100">
+                            <input type="checkbox" id="negotiableCheck" checked class="w-4 h-4 text-[#f95721] accent-[#f95721] rounded" />
+                            <div class="flex flex-col">
+                                <span class="text-xs font-bold text-slate-800">Open to friendly campus negotiations</span>
+                                <span class="text-[11px] text-slate-400">Allows interested juniors to suggest fair counter-offers</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- 4. Campus Pickup & Safe Meetup -->
+                    <div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-4">
+                        <div class="flex items-center gap-2.5 pb-2 border-b border-slate-100">
+                            <div class="w-7 h-7 rounded-lg bg-[#f95721] text-white flex items-center justify-center font-bold text-xs">4</div>
+                            <h2 class="text-lg font-bold text-slate-900">Safe Meetup Hand-off</h2>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-xs font-bold text-slate-700" for="pickupLocationSelect">Designated Campus Spot</label>
+                            <div class="relative">
+                                <select id="pickupLocationSelect"
+                                    class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#f95721] focus:bg-white transition-all text-slate-800 font-medium appearance-none cursor-pointer">
+                                    <option selected>BMSIT Library Lobby / Steps</option>
+                                    <option>BMSIT Main Security Gate</option>
+                                    <option>Campus Central Canteen Area</option>
+                                    <option>Boys Hostel Block 2 Entrance</option>
+                                    <option>Girls Hostel Gate</option>
+                                    <option>Admin Block Foyer</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-3 top-3 text-slate-400 text-[18px] pointer-events-none">location_on</span>
+                            </div>
+                        </div>
+
+                        <!-- Safety Banner -->
+                        <div class="p-3 bg-blue-50/80 border border-blue-200/70 rounded-xl flex items-start gap-2.5 text-xs text-blue-900">
+                            <span class="material-symbols-outlined text-blue-600 text-[18px] shrink-0 mt-0.5">security</span>
+                            <span>Exact hostel room numbers or private phone numbers are never shared publicly. Handoffs occur safely in broad daylight at designated campus spots.</span>
+                        </div>
+                    </div>
+
+                    <!-- Publish Button -->
+                    <div class="flex items-center gap-3 pt-2">
+                        <button type="submit" class="flex-1 py-3.5 px-6 rounded-2xl bg-[#f95721] hover:bg-[#e04815] text-white font-extrabold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer">
+                            <span class="material-symbols-outlined text-[20px]">send</span>
+                            <span>Publish Listing to Feed (₹0 Free)</span>
+                        </button>
+                        <a href="homepageUI.html" class="py-3.5 px-6 rounded-2xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-sm transition-all text-center">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+
+                <!-- Right: Sticky Live Student Preview (5 cols) -->
+                <div class="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-28">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-1.5 text-slate-900 font-bold text-sm">
+                            <span class="material-symbols-outlined text-[#f95721] text-[20px]">visibility</span>
+                            <span>Live Student Preview</span>
+                        </div>
+                        <span class="text-xs text-slate-400">Updates as you type</span>
+                    </div>
+
+                    <!-- PREVIEW CARD (matches homepage card anatomy) -->
+                    <div class="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-lg flex flex-col gap-4">
+                        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 relative">
+                            <img id="previewImg" src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80" 
+                                alt="Item Preview" class="w-full h-full object-cover" />
+                            
+                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-semibold text-slate-800 shadow-sm flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[#16a34a] text-[14px]">directions_walk</span>
+                                <span>BMSIT</span>
+                            </div>
+
+                            <div id="previewDiscountBadge" class="absolute top-3 right-3 bg-[#16a34a] text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
+                                68% OFF
+                            </div>
+
+                            <div id="previewCondition" class="absolute bottom-3 left-3 bg-slate-900/85 backdrop-blur-sm text-white text-[11px] font-semibold px-2 py-0.5 rounded-md">
+                                Like New
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center justify-between text-xs text-slate-400">
+                                <span id="previewCategory" class="uppercase font-bold tracking-wider text-[#f95721]">Books &amp; Notes</span>
+                                <div class="flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[14px]">pin_drop</span>
+                                    <span id="previewLocation" class="truncate max-w-[140px]">BMSIT Library Steps</span>
+                                </div>
+                            </div>
+
+                            <h3 id="previewTitle" class="text-base font-extrabold text-slate-900 line-clamp-2 leading-snug">
+                                VTU 3rd &amp; 4th Sem CSE Textbooks + Lab Manuals
+                            </h3>
+
+                            <div class="flex items-baseline gap-2 pt-1">
+                                <div class="text-2xl font-extrabold text-slate-900">
+                                    ₹<span id="previewPrice">450</span>
+                                </div>
+                                <div class="text-xs text-slate-400 line-through">
+                                    ₹<span id="previewOriginalPrice">1400</span>
+                                </div>
+                                <span class="text-[10px] text-[#16a34a] bg-[#dff6e9] px-2 py-0.5 rounded font-bold ml-auto">Verified Deal</span>
+                            </div>
+
+                            <div id="previewOfferBadge" class="flex items-center gap-1.5 text-xs text-[#16a34a] font-medium pt-1">
+                                <span class="material-symbols-outlined text-[16px]">handshake</span>
+                                <span>Open to student counter-offers</span>
+                            </div>
+
+                            <!-- Seller strip -->
+                            <div class="pt-3 border-t border-dashed border-slate-200 mt-2 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div id="previewAvatar" class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">
+                                        Y
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span id="previewSellerName" class="text-xs font-bold text-slate-900">You (Student)</span>
+                                        <span class="text-[10px] text-slate-400">BMSIT Verified</span>
+                                    </div>
+                                </div>
+                                <span class="text-[11px] font-bold text-[#f95721] bg-[#ffece3] px-2 py-0.5 rounded-full">New Listing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Helpful tip -->
+                    <div class="bg-[#dff6e9]/40 border border-[#dff6e9] rounded-2xl p-4 flex items-start gap-2.5 text-xs text-slate-700">
+                        <span class="material-symbols-outlined text-[#16a34a] text-[20px] shrink-0">lightbulb</span>
+                        <div>
+                            <strong class="font-bold text-slate-900">Fast Selling Tip:</strong>
+                            <span>Dorm items and VTU books priced 40-50% below MRP generally receive an inquiry from a junior within 24 hours!</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Confirmation Dialog -->
+    <div id="publishModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-7 text-center flex flex-col items-center gap-4 shadow-2xl">
+            <div class="w-16 h-16 rounded-full bg-[#dff6e9] text-[#16a34a] flex items-center justify-center">
+                <span class="material-symbols-outlined text-[36px]">check_circle</span>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">Listing Published Live!</h3>
+            <p class="text-xs text-slate-500" id="modalPublishedMsg">
+                Your item is now live for all BMSIT students to discover.
+            </p>
+            <div class="flex gap-3 w-full mt-2">
+                <a href="buy.html" class="flex-1 py-3 px-4 rounded-xl bg-[#f95721] hover:bg-[#e04815] text-white font-bold text-xs transition-all text-center">
+                    View on Marketplace
+                </a>
+                <button onclick="closeModalAndReset()" class="py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all">
+                    List Another
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Feature Strip (4 Pillars matching homepage) -->
+    <footer id="about" class="w-full border-t border-slate-100 bg-white py-6 mt-12 scroll-mt-6">
+        <div class="max-w-[1300px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+            <div class="flex items-center gap-3.5 px-2 md:px-6">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">school</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Student Only</h4>
+                    <p class="text-[11px] text-slate-500">Verified college students</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3.5 px-2 md:px-6 pt-4 md:pt-0">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">location_on</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Local &amp; Nearby</h4>
+                    <p class="text-[11px] text-slate-500">Within campus &amp; nearby colleges</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3.5 px-2 md:px-6 pt-4 md:pt-0">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">eco</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Sustainable</h4>
+                    <p class="text-[11px] text-slate-500">Reuse, reduce waste</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3.5 px-2 md:px-6 pt-4 md:pt-0">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">group</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Stronger Campus</h4>
+                    <p class="text-[11px] text-slate-500">Students helping students</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        const titleInput = document.getElementById('itemTitleInput');
+        const previewTitle = document.getElementById('previewTitle');
+
+        const priceInput = document.getElementById('priceInput');
+        const previewPrice = document.getElementById('previewPrice');
+
+        const origPriceInput = document.getElementById('originalPriceInput');
+        const previewOrigPrice = document.getElementById('previewOriginalPrice');
+        const previewDiscountBadge = document.getElementById('previewDiscountBadge');
+
+        const categoryInput = document.getElementById('categoryInput');
+        const previewCategory = document.getElementById('previewCategory');
+
+        const pickupLocationSelect = document.getElementById('pickupLocationSelect');
+        const previewLocation = document.getElementById('previewLocation');
+
+        const negotiableCheck = document.getElementById('negotiableCheck');
+        const previewOfferBadge = document.getElementById('previewOfferBadge');
+
+        const itemImageInput = document.getElementById('itemImageInput');
+        const previewImg = document.getElementById('previewImg');
+        const filePicker = document.getElementById('filePicker');
+
+        let currentCondition = 'Like New';
+
+        // Check authentication
+        function getStudentUser() {
+            try { return JSON.parse(localStorage.getItem('campuscart_user')); } catch (e) { return null; }
+        }
+
+        const student = getStudentUser();
+        if (student && student.name) {
+            document.getElementById('previewSellerName').textContent = student.name;
+            document.getElementById('previewAvatar').textContent = student.name.trim().charAt(0).toUpperCase();
+            document.getElementById('btnProfileNav').innerHTML = `<span class="font-bold text-xs text-[#f95721]">${student.name.trim().charAt(0).toUpperCase()}</span>`;
+            document.getElementById('btnProfileNav').title = `${student.name} (${student.year || 'Student'})`;
+        }
+
+        function handleUserClick() {
+            if (student) {
+                if (confirm(`Logged in as ${student.name} (${student.year || 'Student'}).\nLog out?`)) {
+                    localStorage.removeItem('campuscart_user');
+                    window.location.href = 'login.html';
+                }
+            } else {
+                window.location.href = 'login.html?redirect=sell.html';
+            }
+        }
+
+        // Live syncing
+        titleInput.addEventListener('input', (e) => {
+            previewTitle.textContent = e.target.value.trim() || 'Untitled Campus Listing';
+        });
+
+        categoryInput.addEventListener('change', (e) => {
+            previewCategory.textContent = e.target.value;
+        });
+
+        pickupLocationSelect.addEventListener('change', (e) => {
+            previewLocation.textContent = e.target.value.split('/')[0].trim();
+        });
+
+        itemImageInput.addEventListener('input', (e) => {
+            if (e.target.value.trim()) previewImg.src = e.target.value.trim();
+        });
+
+        filePicker.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    itemImageInput.value = event.target.result;
+                    previewImg.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function setPresetImg(url) {
+            itemImageInput.value = url;
+            previewImg.src = url;
+        }
+
+        function updatePrices() {
+            const price = parseFloat(priceInput.value) || 0;
+            const orig = parseFloat(origPriceInput.value) || 0;
+
+            previewPrice.textContent = price.toLocaleString('en-IN');
+            previewOrigPrice.textContent = orig.toLocaleString('en-IN');
+
+            if (orig > price && price > 0) {
+                const discount = Math.round(((orig - price) / orig) * 100);
+                previewDiscountBadge.textContent = discount + '% OFF';
+                previewDiscountBadge.style.display = 'block';
+            } else {
+                previewDiscountBadge.style.display = 'none';
+            }
+        }
+
+        priceInput.addEventListener('input', updatePrices);
+        origPriceInput.addEventListener('input', updatePrices);
+
+        negotiableCheck.addEventListener('change', (e) => {
+            previewOfferBadge.style.display = e.target.checked ? 'flex' : 'none';
+        });
+
+        function setCondition(label, btnElement) {
+            currentCondition = label;
+            document.getElementById('previewCondition').textContent = label;
+            const buttons = document.querySelectorAll('#conditionGroup button');
+            buttons.forEach(b => {
+                b.className = 'py-2 px-3 text-xs font-bold rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all';
+            });
+            btnElement.className = 'py-2 px-3 text-xs font-bold rounded-xl bg-[#f95721] text-white shadow-sm transition-all';
+        }
+
+        function handlePublish() {
+            // Check student login first
+            if (!student) {
+                alert('Please verify your student credentials before listing an item.');
+                window.location.href = 'login.html?redirect=sell.html';
+                return;
+            }
+
+            const title = titleInput.value.trim();
+            const category = categoryInput.value;
+            const price = parseFloat(priceInput.value) || 0;
+            const origPrice = parseFloat(origPriceInput.value) || price;
+            const location = pickupLocationSelect.value;
+            const desc = document.getElementById('descInput').value.trim();
+            const image = itemImageInput.value.trim() || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80';
+
+            if (!title || price < 0) {
+                alert('Please provide a valid title and price.');
+                return;
+            }
+
+            const newProduct = {
+                id: Date.now(),
+                title: title,
+                category: category,
+                price: price,
+                originalPrice: origPrice,
+                condition: currentCondition,
+                description: desc,
+                location: location,
+                seller: student ? student.name : "Verified Senior",
+                branch: student ? `${student.year || 'Student'} • Verified` : "BMSIT • Verified",
+                image: image,
+                created: Date.now(),
+                justAdded: true
+            };
+
+            let stored = JSON.parse(localStorage.getItem('campuscart_products')) || [];
+            stored.unshift(newProduct);
+            localStorage.setItem('campuscart_products', JSON.stringify(stored));
+
+            document.getElementById('modalPublishedMsg').textContent = `"${title}" is now live for all BMSIT students at ₹${price}.`;
+            const modal = document.getElementById('publishModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModalAndReset() {
+            document.getElementById('publishModal').classList.remove('flex');
+            document.getElementById('publishModal').classList.add('hidden');
+            document.getElementById('sellForm').reset();
+            updatePrices();
+        }
+
+        updatePrices();
+    </script>
+</body>
+</html>

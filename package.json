@@ -1,0 +1,32 @@
+{
+  "name": "campuscart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node test/check.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SAKSHAM-JHA007/CampusCart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SAKSHAM-JHA007/CampusCart/issues"
+  },
+  "homepage": "https://github.com/SAKSHAM-JHA007/CampusCart#readme",
+  "dependencies": {
+    "autoprefixer": "^10.6.1",
+    "lucide-react": "^1.48.0",
+    "next": "^14.2.15",
+    "postcss": "^8.5.28",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.0"
+  }
+}

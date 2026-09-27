@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CampusCart - Pre-loved essentials. A better campus.</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Caveat (for hand-drawn doodle text) -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        handwriting: ['"Caveat"', 'cursive'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',
+                            orange: '#f95721',
+                            peach: '#ffece3',
+                            mint: '#dff6e9',
+                            sky: '#e4f1ff',
+                            blue: '#0284c7',
+                            green: '#16a34a',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        /* Smooth subtle hover transitions */
+        .action-card {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .action-card:hover {
+            transform: translateY(-4px);
+        }
+        .action-card:hover .arrow-btn {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-[#ffece3] selection:text-[#f95721]">
+
+    <!-- Top Navigation Header -->
+    <header class="w-full bg-white border-b border-slate-100 z-30">
+        <div class="max-w-[1340px] mx-auto px-6 h-20 flex items-center justify-between gap-6">
+            <!-- Brand Logo -->
+            <a href="homepageUI.html" class="flex items-center gap-2 shrink-0">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-[#f95721]">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"/>
+                        <circle cx="19" cy="21" r="1"/>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                    </svg>
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight text-slate-900">
+                    Campus<span class="text-[#f95721]">Cart</span>
+                </span>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+                <a href="homepageUI.html" class="text-slate-900 border-b-2 border-slate-900 pb-1">Home</a>
+                <a href="javascript:void(0)" onclick="handleNavigation('buy.html')" class="text-slate-500 hover:text-slate-900 transition-colors pb-1">Browse</a>
+                <a href="#about" class="text-slate-500 hover:text-slate-900 transition-colors pb-1">About</a>
+            </nav>
+
+            <!-- Search & User Profile -->
+            <div class="flex items-center gap-3">
+                <div class="hidden sm:flex items-center bg-slate-50 border border-slate-200/80 rounded-full px-4 py-2 w-72 lg:w-80 transition-all focus-within:border-slate-400 focus-within:bg-white focus-within:shadow-sm">
+                    <span class="material-symbols-outlined text-slate-400 text-[18px] mr-2 shrink-0">search</span>
+                    <input type="text"
+                        placeholder="Search for books, mattresses, appliances..."
+                        class="w-full bg-transparent text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none"
+                        onkeydown="if(event.key==='Enter') handleNavigation('buy.html?search=' + encodeURIComponent(this.value));" />
+                </div>
+
+                <!-- User Profile / Auth State Button -->
+                <button onclick="handleNavigation('user')" id="btnProfileNav" class="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-colors cursor-pointer" title="Student Profile">
+                    <span class="material-symbols-outlined text-[20px]" id="userNavIcon">person</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Canvas Area with Ambient Subtle Gradients -->
+    <main class="flex-1 relative overflow-hidden flex flex-col justify-center py-6 sm:py-10">
+        <!-- Radial Gradient Glows (Yellow/Peach on Left, Mint on Right) -->
+        <div class="absolute top-0 left-0 w-[420px] h-[420px] bg-amber-100/50 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+        <div class="absolute top-0 right-0 w-[420px] h-[420px] bg-emerald-100/50 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+
+        <div class="max-w-[1300px] mx-auto px-6 w-full relative">
+            
+            <!-- Hand-drawn Doodle 1 (Top Left): "Same Campus Same People" -->
+            <div class="hidden lg:flex flex-col items-center absolute -top-2 left-6 pointer-events-none select-none rotate-[-4deg]">
+                <div class="font-handwriting text-2xl sm:text-3xl text-amber-500 font-bold leading-tight tracking-wide text-center">
+                    Same<br/>Campus<br/>Same<br/>People
+                </div>
+                <svg width="80" height="14" viewBox="0 0 80 14" fill="none" class="text-amber-500 mt-1 stroke-current">
+                    <path d="M2 10C24 4 56 12 78 4" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- Hand-drawn Doodle 2 (Top Right): "Pass it Forward 🙂" -->
+            <div class="hidden lg:flex flex-col items-center absolute -top-2 right-12 pointer-events-none select-none rotate-[4deg]">
+                <div class="font-handwriting text-2xl sm:text-3xl text-emerald-600 font-bold leading-tight tracking-wide text-center">
+                    Pass it<br/>Forward
+                </div>
+                <div class="text-emerald-500 text-2xl mt-1">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block text-emerald-600">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                        <line x1="9" y1="9" x2="9.01" y2="9"/>
+                        <line x1="15" y1="9" x2="15.01" y2="9"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Center Headline Title Block -->
+            <div class="text-center max-w-3xl mx-auto flex flex-col items-center gap-2 mb-8 sm:mb-12">
+                <span class="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">
+                    BUY • SELL • DONATE
+                </span>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold tracking-tight text-slate-900 leading-none">
+                    Campus<span class="text-[#f95721] relative inline-block">Cart<span class="absolute -top-1 -right-4 text-[#f95721] text-2xl">✦</span></span>
+                </h1>
+
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mt-1">
+                    Pre-loved essentials. A better campus.
+                </h2>
+
+                <p class="text-xs sm:text-sm text-slate-500 max-w-xl font-normal leading-relaxed mt-1">
+                    A student-only marketplace to buy, sell or donate college and hostel essentials within your campus and nearby colleges.
+                </p>
+            </div>
+
+            <!-- The 3 Action Cards (BUY, SELL, DONATE) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+                
+                <!-- 1. BUY CARD -->
+                <div onclick="handleNavigation('buy.html')" class="action-card bg-[#eef7ff] border border-[#d6e9fe] rounded-[2rem] p-5 flex flex-col justify-between cursor-pointer group shadow-sm hover:shadow-lg">
+                    <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden mb-5 bg-white shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80" 
+                            alt="Student study desk with laptop and books" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-extrabold text-[#0284c7] tracking-tight">BUY</h3>
+                            <div class="arrow-btn w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#0284c7] shadow-sm transition-transform">
+                                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                            Find affordable, pre-owned essentials from students nearby.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. SELL CARD -->
+                <div onclick="handleNavigation('sell.html')" class="action-card bg-[#eefaf4] border border-[#d1f2e2] rounded-[2rem] p-5 flex flex-col justify-between cursor-pointer group shadow-sm hover:shadow-lg">
+                    <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden mb-5 bg-white shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" 
+                            alt="Box packed with dorm essentials" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-extrabold text-[#16a34a] tracking-tight">SELL</h3>
+                            <div class="arrow-btn w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#16a34a] shadow-sm transition-transform">
+                                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                            Give your used items a new home and earn some money.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. DONATE CARD -->
+                <div onclick="handleNavigation('buy.html?category=Donate')" class="action-card bg-[#fff5ed] border border-[#ffe0cc] rounded-[2rem] p-5 flex flex-col justify-between cursor-pointer group shadow-sm hover:shadow-lg">
+                    <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden mb-5 bg-white shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=600&q=80" 
+                            alt="Community donation box drive" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-extrabold text-[#f95721] tracking-tight">DONATE</h3>
+                            <div class="arrow-btn w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#f95721] shadow-sm transition-transform">
+                                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                            Pass on items you no longer need and help a fellow student.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Feature Strip (4 Pillars) -->
+    <footer id="about" class="w-full border-t border-slate-100 bg-white py-6 scroll-mt-6">
+        <div class="max-w-[1300px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+            
+            <!-- Pillar 1 -->
+            <div class="flex items-center gap-3.5 px-2 md:px-6">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">school</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Student Only</h4>
+                    <p class="text-[11px] text-slate-500">Verified college students</p>
+                </div>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="flex items-center gap-3.5 px-2 md:px-6 pt-4 md:pt-0">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">location_on</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Local &amp; Nearby</h4>
+                    <p class="text-[11px] text-slate-500">Within your campus &amp; nearby colleges</p>
+                </div>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="flex items-center gap-3.5 px-2 md:px-6 pt-4 md:pt-0">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">eco</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Sustainable</h4>
+                    <p class="text-[11px] text-slate-500">Reuse, reduce waste</p>
+                </div>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="flex items-center gap-3.5 px-2 md:px-6 pt-4 md:pt-0">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">group</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Stronger Campus</h4>
+                    <p class="text-[11px] text-slate-500">Students helping students</p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Interactive Logic & Login Verification Gate -->
+    <script>
+        // Check if student user is already verified/logged in
+        function getCurrentStudent() {
+            try {
+                return JSON.parse(localStorage.getItem('campuscart_user'));
+            } catch (e) {
+                return null;
+            }
+        }
+
+        // Global Navigation Handler: Requires student login before accessing any section
+        function handleNavigation(targetUrl) {
+            const student = getCurrentStudent();
+            
+            // If clicking profile icon directly
+            if (targetUrl === 'user') {
+                if (student) {
+                    const confirmLogout = confirm(`Logged in as ${student.name} (${student.year || 'Student'}).\nEmail: ${student.email}\nPhone: ${student.phone}\n\nDo you want to switch student account?`);
+                    if (confirmLogout) {
+                        localStorage.removeItem('campuscart_user');
+                        window.location.href = 'login.html';
+                    }
+                } else {
+                    window.location.href = 'login.html?redirect=homepageUI.html';
+                }
+                return;
+            }
+
+            // If user is verified, navigate directly; otherwise prompt verification login
+            if (student && student.name && student.phone && student.email) {
+                window.location.href = targetUrl;
+            } else {
+                window.location.href = 'login.html?redirect=' + encodeURIComponent(targetUrl);
+            }
+        }
+
+        // Update profile button avatar state if already logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            const student = getCurrentStudent();
+            if (student && student.name) {
+                const btn = document.getElementById('btnProfileNav');
+                const initial = student.name.trim().charAt(0).toUpperCase();
+                btn.innerHTML = `<span class="font-bold text-xs text-[#f95721]">${initial}</span>`;
+                btn.title = `Verified: ${student.name} (${student.year || 'Student'})`;
+            }
+        });
+    </script>
+</body>
+</html>

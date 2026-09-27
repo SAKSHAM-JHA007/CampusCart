@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CampusCart - Browse Pre-loved Essentials | BMSIT Yelahanka</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        handwriting: ['"Caveat"', 'cursive'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',
+                            orange: '#f95721',
+                            peach: '#ffece3',
+                            mint: '#dff6e9',
+                            sky: '#e4f1ff',
+                            blue: '#0284c7',
+                            green: '#16a34a',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+
+<body class="bg-[#f8fafc] text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-[#ffece3] selection:text-[#f95721]">
+    <!-- Ambient top glow -->
+    <div class="fixed top-0 left-0 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="fixed top-0 right-0 w-96 h-96 bg-emerald-100/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <!-- Navigation Header -->
+    <header class="w-full bg-white border-b border-slate-100 sticky top-0 z-40">
+        <div class="max-w-[1340px] mx-auto px-6 h-20 flex items-center justify-between gap-6">
+            <!-- Brand Logo -->
+            <a href="homepageUI.html" class="flex items-center gap-2 shrink-0">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-[#f95721]">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"/>
+                        <circle cx="19" cy="21" r="1"/>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                    </svg>
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight text-slate-900">
+                    Campus<span class="text-[#f95721]">Cart</span>
+                </span>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+                <a href="homepageUI.html" class="text-slate-500 hover:text-slate-900 transition-colors pb-1">Home</a>
+                <a href="buy.html" class="text-slate-900 border-b-2 border-slate-900 pb-1">Browse</a>
+                <a href="sell.html" class="text-slate-500 hover:text-slate-900 transition-colors pb-1">Sell</a>
+                <a href="#about" class="text-slate-500 hover:text-slate-900 transition-colors pb-1">About</a>
+            </nav>
+
+            <!-- Search & User Profile -->
+            <div class="flex items-center gap-3">
+                <div class="hidden sm:flex items-center bg-slate-50 border border-slate-200/80 rounded-full px-4 py-2 w-72 lg:w-80 transition-all focus-within:border-slate-400 focus-within:bg-white focus-within:shadow-sm">
+                    <span class="material-symbols-outlined text-slate-400 text-[18px] mr-2 shrink-0">search</span>
+                    <input type="text" id="navSearchInput"
+                        placeholder="Search books, mattresses, appliances..."
+                        class="w-full bg-transparent text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none" />
+                </div>
+
+                <!-- Sell Action CTA Button -->
+                <a href="sell.html" class="hidden sm:flex items-center gap-1.5 py-2 px-4 rounded-xl bg-[#f95721] hover:bg-[#e04815] text-white font-bold text-xs shadow-sm transition-all">
+                    <span class="material-symbols-outlined text-[16px]">add_circle</span>
+                    <span>Sell Gear</span>
+                </a>
+
+                <!-- User Profile Button -->
+                <button onclick="handleUserClick()" id="btnProfileNav" class="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-colors cursor-pointer" title="Student Profile">
+                    <span class="material-symbols-outlined text-[20px]" id="userNavIcon">person</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Browse Content -->
+    <main class="w-full py-8">
+        <div class="max-w-[1300px] mx-auto px-6">
+            
+            <!-- Page Header -->
+            <div class="flex flex-col gap-3 mb-8">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e4f1ff] text-[#0284c7] text-xs font-bold uppercase tracking-wider w-fit">
+                    <span class="material-symbols-outlined text-[16px]">shopping_bag</span>
+                    <span>Direct Campus Marketplace</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Browse Pre-Loved <span class="text-[#f95721]">Campus Essentials</span>
+                </h1>
+                <p class="text-sm text-slate-500 max-w-xl">
+                    Save up to 70% on textbooks, tech, dorm furniture, and appliances from fellow students right at BMSIT Yelahanka.
+                </p>
+            </div>
+
+            <!-- Category Pills Bar -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6" id="categoryBar">
+                <button class="cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-slate-900 text-white shadow-sm transition-all" data-category="all">
+                    ⚡ All Items
+                </button>
+                <button class="cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-category="Books & Notes">
+                    📚 Books &amp; Notes
+                </button>
+                <button class="cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-category="Hostel Essentials">
+                    🛏️ Hostel Essentials
+                </button>
+                <button class="cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-category="Appliances">
+                    ⚡ Appliances
+                </button>
+                <button class="cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-category="Electronics">
+                    💻 Electronics
+                </button>
+                <button class="cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-category="Lab & Drafter">
+                    📐 Lab &amp; Drafter
+                </button>
+                <button class="cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-category="Furniture">
+                    🪑 Furniture
+                </button>
+                <button class="cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-category="Donate">
+                    🎁 Donate (Free)
+                </button>
+            </div>
+
+            <!-- Filters & Stats Row -->
+            <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm mb-8">
+                <span class="text-xs font-bold text-slate-500" id="resultsCount">Showing 8 verified items</span>
+
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Condition:</span>
+                        <select id="filterCondition" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none cursor-pointer">
+                            <option value="all">Any Condition</option>
+                            <option value="Like New">Like New</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Sort:</span>
+                        <select id="sortOrder" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none cursor-pointer">
+                            <option value="newest">Newest First</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productGrid">
+                <!-- Dynamically populated via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Express Interest Modal (Replaces Cart/Checkout per PRD) -->
+    <div id="modalInterest" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 flex flex-col gap-4 shadow-2xl max-h-[90vh] overflow-y-auto border border-slate-100">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[#f95721] text-[24px]">handshake</span>
+                    <h3 class="text-lg font-extrabold text-slate-900">Express Interest &amp; Reserve</h3>
+                </div>
+                <button onclick="closeInterestModal()" class="text-slate-400 hover:text-slate-600">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <!-- Item Summary -->
+            <div id="modalItemSummary"></div>
+
+            <!-- Safety Protocol Box -->
+            <div class="p-3 bg-blue-50/80 border border-blue-200/60 rounded-xl flex items-start gap-2.5 text-xs text-blue-900">
+                <span class="material-symbols-outlined text-blue-600 text-[18px] shrink-0 mt-0.5">security</span>
+                <div>
+                    <strong class="font-bold">Campus Safety Protocol:</strong>
+                    <span>No personal residential address or hostel room number is exposed. Handoff occurs in person at an agreed public campus landmark.</span>
+                </div>
+            </div>
+
+            <form id="interestForm" onsubmit="event.preventDefault(); submitInterest();" class="flex flex-col gap-3">
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs font-bold text-slate-700" for="interestMeetupSpot">
+                        Choose Designated Safe Meetup Point
+                    </label>
+                    <select id="interestMeetupSpot" class="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl text-slate-800 focus:outline-none">
+                        <option value="BMSIT Library Lobby / Steps">BMSIT Library Lobby / Steps (Recommended Safe Spot)</option>
+                        <option value="BMSIT Main Security Gate">BMSIT Main Security Gate</option>
+                        <option value="Campus Central Canteen Area">Campus Central Canteen Area</option>
+                        <option value="Boys Hostel Block 2 Entrance">Boys Hostel Block 2 Entrance</option>
+                        <option value="Girls Hostel Gate">Girls Hostel Gate</option>
+                        <option value="Admin Block Foyer">Admin Block Foyer</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs font-bold text-slate-700" for="interestNote">
+                        Note to Senior / Seller (Optional)
+                    </label>
+                    <input type="text" id="interestNote" placeholder="e.g. Free today after 3:30 PM lab or during lunch break"
+                        class="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl text-slate-800 focus:outline-none" />
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3 px-4 rounded-xl bg-[#f95721] hover:bg-[#e04815] text-white font-extrabold text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">send</span>
+                        <span>Send Reservation Ping to Seller</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 hidden items-center gap-3 px-4 py-3 bg-slate-900 text-white text-sm rounded-2xl shadow-2xl border-l-4 border-[#f95721] transition-all">
+        <span class="material-symbols-outlined text-[#16a34a] text-[20px]">check_circle</span>
+        <span id="toastMsg">Action completed</span>
+    </div>
+
+    <!-- Bottom Feature Strip (4 Pillars) -->
+    <footer id="about" class="w-full border-t border-slate-100 bg-white py-6 mt-12 scroll-mt-6">
+        <div class="max-w-[1300px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+            <div class="flex items-center gap-3.5 px-2 md:px-6">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">school</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Student Only</h4>
+                    <p class="text-[11px] text-slate-500">Verified college students</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3.5 px-2 md:px-6 pt-4 md:pt-0">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">location_on</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Local &amp; Nearby</h4>
+                    <p class="text-[11px] text-slate-500">Within campus &amp; nearby colleges</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3.5 px-2 md:px-6 pt-4 md:pt-0">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">eco</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Sustainable</h4>
+                    <p class="text-[11px] text-slate-500">Reuse, reduce waste</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3.5 px-2 md:px-6 pt-4 md:pt-0">
+                <span class="material-symbols-outlined text-slate-700 text-[26px]">group</span>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900">Stronger Campus</h4>
+                    <p class="text-[11px] text-slate-500">Students helping students</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        let allProducts = [];
+        let activeCategory = 'all';
+        let searchQuery = '';
+        let selectedCondition = 'all';
+        let currentSort = 'newest';
+        let activeInterestItem = null;
+
+        function getStudentUser() {
+            try { return JSON.parse(localStorage.getItem('campuscart_user')); } catch (e) { return null; }
+        }
+
+        const student = getStudentUser();
+        if (student && student.name) {
+            document.getElementById('btnProfileNav').innerHTML = `<span class="font-bold text-xs text-[#f95721]">${student.name.trim().charAt(0).toUpperCase()}</span>`;
+            document.getElementById('btnProfileNav').title = `${student.name} (${student.year || 'Student'})`;
+        }
+
+        function handleUserClick() {
+            if (student) {
+                if (confirm(`Logged in as ${student.name} (${student.year || 'Student'}).\nLog out?`)) {
+                    localStorage.removeItem('campuscart_user');
+                    window.location.href = 'login.html';
+                }
+            } else {
+                window.location.href = 'login.html?redirect=buy.html';
+            }
+        }
+
+        function loadProducts() {
+            let stored = JSON.parse(localStorage.getItem('campuscart_products'));
+            if (Array.isArray(stored)) {
+                // Automatically purge any residual dummy test items (id <= 108)
+                stored = stored.filter(p => p.id && p.id > 1000);
+                localStorage.setItem('campuscart_products', JSON.stringify(stored));
+                allProducts = stored;
+            } else {
+                allProducts = [];
+            }
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('productGrid');
+            const countLabel = document.getElementById('resultsCount');
+
+            let filtered = allProducts.filter(item => {
+                const matchCat = activeCategory === 'all' || item.category === activeCategory || (activeCategory === 'Donate' && item.price === 0);
+                const matchCond = selectedCondition === 'all' || item.condition === selectedCondition;
+                const matchSearch = !searchQuery ||
+                    item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    item.category.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchCat && matchCond && matchSearch;
+            });
+
+            if (currentSort === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (currentSort === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else {
+                filtered.sort((a, b) => (b.created || 0) - (a.created || 0));
+            }
+
+            countLabel.textContent = `Showing ${filtered.length} verified item${filtered.length === 1 ? '' : 's'}`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 px-4 text-center bg-white rounded-3xl border border-dashed border-slate-200">
+                        <span class="material-symbols-outlined text-slate-300 text-[48px] mb-2">search_off</span>
+                        <h4 class="font-extrabold text-slate-800 text-lg">No campus gear found</h4>
+                        <p class="text-xs text-slate-500 max-w-sm mx-auto mt-1">Try another search keyword or list this item yourself!</p>
+                        <a href="sell.html" class="inline-flex items-center gap-1.5 px-4 py-2 mt-4 bg-[#f95721] text-white text-xs font-bold rounded-xl shadow-sm">
+                            <span class="material-symbols-outlined text-[16px]">add</span>
+                            <span>List this item now</span>
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => {
+                const orig = item.originalPrice || item.price;
+                const discount = orig > item.price ? Math.round(((orig - item.price) / orig) * 100) : 0;
+                
+                return `
+                    <div class="bg-white rounded-3xl p-4 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 relative mb-3">
+                                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80'" />
+                                
+                                <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-semibold text-slate-800 shadow-sm flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[#16a34a] text-[14px]">directions_walk</span>
+                                    <span>BMSIT</span>
+                                </div>
+
+                                ${discount > 0 ? `
+                                    <div class="absolute top-3 right-3 bg-[#16a34a] text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
+                                        ${discount}% OFF
+                                    </div>
+                                ` : ''}
+
+                                <div class="absolute bottom-3 left-3 bg-slate-900/85 backdrop-blur-sm text-white text-[11px] font-semibold px-2 py-0.5 rounded-md">
+                                    ${item.condition}
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                                <span class="uppercase font-bold tracking-wider text-[#f95721]">${item.category}</span>
+                                <div class="flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[14px]">pin_drop</span>
+                                    <span class="truncate max-w-[130px]">${item.location.split('/')[0]}</span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-sm font-extrabold text-slate-900 line-clamp-2 leading-snug mb-1" title="${item.title}">
+                                ${item.title}
+                            </h3>
+
+                            <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3">
+                                ${item.description}
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-baseline gap-2 pt-2 border-t border-slate-100">
+                                <div class="text-xl font-extrabold text-slate-900">
+                                    ${item.price === 0 ? '<span class="text-[#16a34a]">FREE</span>' : `₹${item.price.toLocaleString('en-IN')}`}
+                                </div>
+                                ${orig > item.price ? `
+                                    <div class="text-xs text-slate-400 line-through">
+                                        ₹${orig.toLocaleString('en-IN')}
+                                    </div>
+                                ` : ''}
+                                <span class="text-[10px] text-[#16a34a] bg-[#dff6e9] px-1.5 py-0.5 rounded font-bold ml-auto">Verified</span>
+                            </div>
+
+                            <div class="flex items-center gap-2 pt-3">
+                                <div class="w-6 h-6 rounded-full bg-slate-900 text-white font-bold text-[10px] flex items-center justify-center">
+                                    ${item.seller ? item.seller.charAt(0) : 'S'}
+                                </div>
+                                <span class="text-xs font-bold text-slate-700 truncate">${item.seller}</span>
+                            </div>
+
+                            <button onclick="openInterestModal(${item.id})" class="w-full mt-3 py-2.5 px-3 bg-[#ffece3] hover:bg-[#f95721] text-[#f95721] hover:text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm">
+                                <span class="material-symbols-outlined text-[16px]">handshake</span>
+                                <span>Express Interest</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        document.querySelectorAll('.cat-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.cat-pill').forEach(b => {
+                    b.className = 'cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all';
+                });
+                btn.className = 'cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-slate-900 text-white shadow-sm transition-all';
+                activeCategory = btn.dataset.category;
+                renderGrid();
+            });
+        });
+
+        const navSearch = document.getElementById('navSearchInput');
+        navSearch.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderGrid();
+        });
+
+        document.getElementById('filterCondition').addEventListener('change', (e) => {
+            selectedCondition = e.target.value;
+            renderGrid();
+        });
+
+        document.getElementById('sortOrder').addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            renderGrid();
+        });
+
+        function showToast(message) {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastMsg').textContent = message;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.remove('flex');
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        function openInterestModal(id) {
+            if (!student) {
+                alert('Please verify your student identity before reserving an item.');
+                window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+                return;
+            }
+
+            activeInterestItem = allProducts.find(p => p.id === id);
+            if (!activeInterestItem) return;
+
+            document.getElementById('modalItemSummary').innerHTML = `
+                <div class="flex items-center gap-3 p-3 bg-slate-50 border border-slate-200/80 rounded-2xl">
+                    <img src="${activeInterestItem.image}" class="w-14 h-14 rounded-xl object-cover" />
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm text-slate-900">${activeInterestItem.title}</h4>
+                        <div class="text-xs font-extrabold text-[#f95721]">₹${activeInterestItem.price.toLocaleString('en-IN')}</div>
+                        <div class="text-[11px] text-slate-400">Seller: ${activeInterestItem.seller}</div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('modalInterest').classList.remove('hidden');
+            document.getElementById('modalInterest').classList.add('flex');
+        }
+
+        function closeInterestModal() {
+            document.getElementById('modalInterest').classList.remove('flex');
+            document.getElementById('modalInterest').classList.add('hidden');
+        }
+
+        function submitInterest() {
+            const meetup = document.getElementById('interestMeetupSpot').value;
+            const note = document.getElementById('interestNote').value.trim();
+
+            const interestRecord = {
+                id: Date.now(),
+                productId: activeInterestItem.id,
+                title: activeInterestItem.title,
+                price: activeInterestItem.price,
+                seller: activeInterestItem.seller,
+                meetupSpot: meetup,
+                note: note,
+                buyer: student ? student.name : "Verified Student",
+                date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+                status: 'Awaiting Seller Confirmation'
+            };
+
+            let interests = JSON.parse(localStorage.getItem('campuscart_interests')) || [];
+            interests.unshift(interestRecord);
+            localStorage.setItem('campuscart_interests', JSON.stringify(interests));
+
+            closeInterestModal();
+            document.getElementById('interestForm').reset();
+            showToast(`Interest reserved with ${activeInterestItem.seller}! Meetup spot: ${meetup.split('/')[0].trim()}`);
+        }
+
+        // Check search query in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchParam = urlParams.get('search');
+        if (searchParam) {
+            searchQuery = searchParam;
+            navSearch.value = searchParam;
+        }
+
+        const catParam = urlParams.get('category');
+        if (catParam) {
+            activeCategory = catParam;
+            document.querySelectorAll('.cat-pill').forEach(b => {
+                if (b.dataset.category === catParam) {
+                    b.click();
+                }
+            });
+        }
+
+        loadProducts();
+        renderGrid();
+    </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+CAMPUSCART — IMPLEMENTATION PLAN
+
+1. PROJECT SETUP
+- Create GitHub repository.
+- Initialize Next.js project.
+- Configure React, JavaScript and CSS.
+- Set up MySQL database.
+- Configure environment variables.
+- Create development and production environments.
+- Set up Git workflow.
+
+Branches:
+main
+development
+feature/auth
+feature/listings
+feature/search
+feature/interest
+feature/admin
+
+2. FRONTEND
+Technology:
+- HTML
+- CSS
+- JavaScript
+- React.js
+- Next.js
+
+Pages:
+- Home
+- Login
+- Signup
+- Email Verification
+- Marketplace
+- Product Details
+- Add Product
+- My Listings
+- Profile
+- Interests
+- Transactions
+- Report
+- Admin Dashboard
+
+3. DATABASE
+Use MySQL and SQL.
+
+Tables:
+Users
+- user_id, name, email, college_id, hostel_pg, general_location
+- phone, profile_image, verification_status, created_at
+
+Colleges
+- college_id, college_name, city, verification_domain
+
+Products
+- product_id, seller_id, name, category_id, description
+- price, condition, image_url, pickup_area, status, created_at
+
+Categories
+- category_id, category_name
+
+Interests
+- interest_id, product_id, buyer_id, seller_id, status, created_at
+
+Transactions
+- transaction_id, product_id, buyer_id, seller_id
+- status, meetup_point, completed_at
+
+Reports
+- report_id, reporter_id, reported_user_id, product_id
+- reason, status, created_at
+
+4. AUTHENTICATION & VERIFICATION
+Implement:
+- Signup
+- Login
+- Logout
+- Forgot Password
+- College email verification
+- Protected routes
+- Verified student status
+
+Signup information:
+- Name
+- College email
+- Password
+- College
+- Hostel/PG
+- General location
+- Phone
+- Optional course/branch/year
+
+Flow:
+Signup → Email Verification → Verified Student → Active Account
+
+5. STUDENT PROFILE
+Profile:
+- Name
+- Verified badge
+- College
+- Hostel/PG
+- General location
+- Contact preference
+- Profile picture
+- My Listings
+- Transaction history
+
+6. PRODUCT LISTING
+Add Product:
+- Product name
+- Category
+- Description
+- Price
+- Condition
+- Photos
+- Pickup area
+- Contact preference
+
+Minimum requirements:
+- At least 1 photo
+- Category
+- Price
+- Condition
+
+Flow:
+Submit Listing → Moderation → Approved → Live
+
+7. MARKETPLACE
+Features:
+- Search
+- Categories
+- Product cards
+- Nearby listings
+- Price
+- Condition
+- College
+- General pickup area
+
+Categories:
+Books, Notes, Electronics, Hostel Essentials, Furniture,
+Appliances, Bags, Other
+
+Filters:
+- Category
+- Price
+- Condition
+- Distance
+
+8. PRODUCT DETAILS
+Show:
+- Product images
+- Product name
+- Price
+- Condition
+- Description
+- Seller
+- Verified student badge
+- College
+- General pickup area
+- Express Interest
+- Report Listing
+
+Do not publicly display exact hostel rooms or exact home addresses.
+
+9. EXPRESS INTEREST
+This replaces Cart and Checkout.
+
+Buyer:
+Product → Express Interest → Interest Created → Seller Notified
+
+Seller:
+New Interest → View Buyer → Accept / Reject
+
+If accepted:
+Buyer + Seller → Contact Information → Safe Meetup Point → Physical Handoff
+
+No online payment in MVP.
+
+10. SAFE MEETUP
+Create predefined safe meetup locations around BMSIT:
+- BMSIT Main Gate
+- Library Entrance
+- Security Post
+- Other designated campus locations
+
+Outcomes:
+- Completed
+- Fell Through
+
+Never reveal exact residential addresses or hostel room numbers.
+
+11. TRANSACTION / HANDOFF LOG
+Use a transaction log instead of a traditional order system.
+
+Statuses:
+- Interest Sent
+- Confirmed
+- Completed
+- Cancelled
+- Fell Through
+
+12. MY LISTINGS
+Actions:
+- Add product
+- Edit product
+- Delete product
+- Mark as sold
+- Mark as available
+- Update price
+
+Statuses:
+- Pending Moderation
+- Active
+- Sold
+- Rejected
+
+13. REPORT & BLOCK
+Every product and user should have:
+- Report
+- Block
+
+Report reasons:
+- Scam
+- Prohibited Item
+- Fake Listing
+- Harassment
+- Incorrect Information
+- Other
+
+Flow:
+Report → Admin Queue → Admin Review → Action / Resolution
+
+14. ADMIN DASHBOARD
+Features:
+- View/manage users
+- Verify users
+- Manage colleges
+- Manage categories
+- Approve/reject listings
+- Remove listings
+- Review reports
+- Block users
+- View marketplace statistics
+
+15. NOTIFICATIONS
+Initial events:
+- New Interest
+- Interest Accepted
+- Interest Rejected
+- Meetup Information
+- Report Update
+
+Start with in-app notifications. Add email/push later.
+
+16. PRIVACY & SAFETY
+Implement:
+- General location instead of exact address
+- No public hostel room numbers
+- Data minimization
+- Account/data deletion
+- Privacy Policy
+- Terms of Service
+- Prohibited Items Policy
+- Report and escalation process
+
+17. BACKEND / REST API
+Use Node.js with Next.js API routes / REST APIs.
+
+Authentication:
+POST /api/auth/signup
+POST /api/auth/login
+POST /api/auth/verify
+
+Users:
+GET /api/users/profile
+PUT /api/users/profile
+
+Products:
+GET /api/products
+POST /api/products
+GET /api/products/:id
+PUT /api/products/:id
+DELETE /api/products/:id
+PATCH /api/products/:id/status
+
+Search:
+GET /api/products/search
+GET /api/products/filter
+
+Interest:
+POST /api/interests
+GET /api/interests
+PATCH /api/interests/:id
+
+Transactions:
+POST /api/transactions
+GET /api/transactions
+PATCH /api/transactions/:id
+
+Reports:
+POST /api/reports
+GET /api/admin/reports
+
+Admin:
+GET /api/admin/users
+GET /api/admin/products
+PATCH /api/admin/products/:id
+PATCH /api/admin/users/:id
+
+18. IMAGE UPLOAD
+Implement:
+- Image validation
+- File size limits
+- Basic compression
+- Secure image storage
+- Product-image association
+
+19. TESTING
+Functional:
+- Signup
+- Email verification
+- Login
+- Add product
+- Moderation
+- Search
+- Filters
+- Express Interest
+- Seller accept/reject
+- Meetup
+- Transaction completion
+- Report
+- Block
+- Admin actions
+
+Security:
+- Unauthorized access
+- Protected routes
+- Invalid authentication
+- User data access
+- Admin authorization
+- Input validation
+- Report abuse
+
+Responsive:
+- Mobile
+- Tablet
+- Laptop
+- Desktop
+
+20. DEPLOYMENT
+Development:
+Localhost → Git → GitHub
+
+Production:
+GitHub → Vercel → CampusCart
+
+Stack:
+Frontend: HTML, CSS, JavaScript, React.js, Next.js
+Backend: Node.js, Next.js API Routes, REST APIs
+Database: MySQL, SQL
+Version Control: Git, GitHub
+Deployment: Vercel
+
+21. BMSIT PILOT
+Before public launch:
+- Recruit 10–20 final-year students.
+- Seed initial listings.
+- Test buyer and seller flows.
+- Create QR posters for hostels and campus areas.
+- Promote through student groups and campus networks.
+
+Initial focus:
+- BMSIT Yelahanka
+- Student-to-student transactions
+- Second-hand college and hostel essentials
+
+22. ANALYTICS & SUCCESS METRICS
+Track:
+- Registered users
+- Verified students
+- Active listings
+- Weekly active buyers
+- Product views
+- Express interests
+- Completed handoffs
+- Reported incidents
+- Sellers listing multiple items
+
+Phase 1 targets:
+- 150+ active listings
+- 250–300 weekly active buyers
+- More than 25% listing-to-contact rate
+- More than 40% contact-to-completed-handoff rate
+- 20% of sellers listing 2+ items
+- 0 reported safety incidents
+
+23. FINAL DEVELOPMENT ORDER
+1. GitHub Repository
+2. Next.js Project Setup
+3. MySQL Database Setup
+4. Database Schema
+5. Authentication
+6. College Email Verification
+7. Student Profile
+8. Product Listing
+9. Image Upload
+10. Admin Moderation
+11. Marketplace Homepage
+12. Search and Categories
+13. Filters
+14. Product Details
+15. Express Interest
+16. Seller Accept/Reject
+17. Safe Meetup System
+18. Transaction/Handoff Log
+19. My Listings
+20. Report/Block
+21. Admin Dashboard
+22. Privacy, Terms and Policies
+23. Testing
+24. Vercel Deployment
+25. BMSIT Pilot Launch
+
+24. MVP SCOPE
+Build now:
+- Signup/Login
+- College email verification
+- Student profile
+- Product listings
+- Image upload
+- Search
+- Categories
+- Filters
+- Express Interest
+- Safe meetup suggestions
+- Transaction/handoff log
+- My Listings
+- Report/Block
+- Admin moderation
+- Basic analytics
+
+Do not build initially:
+- Cart
+- Quantity-based checkout
+- Online payments
+- Delivery system
+- Ratings/reviews
+- AI recommendations
+- Native mobile application
+- Advanced seller analytics
+- Complex notification system
+
+25. CORE CAMPUSCART LOOP
+Verified Student
+→ List Item
+→ Admin Moderation
+→ Listing Goes Live
+→ Nearby Student Finds Item
+→ Express Interest
+→ Seller Accepts
+→ Safe Meetup
+→ Physical Handoff
+→ Transaction Completed
+
+26. FUTURE ROADMAP
+Phase 1: BMSIT pilot and validation.
+Phase 2: Bangalore colleges after Phase 1 targets are achieved.
+Phase 3: Major Indian student cities.
+Phase 4: Pan-India.
+
+Future features:
+- Online payments
+- Delivery integration
+- Rent instead of buy
+- Auctions
+- AI recommendations
+- Price suggestions
+- Wishlist
+- Push notifications
+- Referral system
+- Campus ambassadors
+- Inter-college marketplace
+- Native mobile app
+- Buyer/seller chat
+- Ratings and reviews

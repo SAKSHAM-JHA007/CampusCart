@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { CheckCircle2, ShoppingBag, Store, PlusCircle, MapPin, X, ShieldCheck, Send } from 'lucide-react';
 
 const CATEGORIES = [
   { id: 'all', label: '⚡ All Items' },
@@ -132,7 +133,7 @@ function BrowseContent() {
       {/* Toast Notification */}
       {showToast && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 bg-slate-900 text-white text-sm rounded-2xl shadow-2xl border-l-4 border-[#f95721] animate-in fade-in slide-in-from-bottom-3">
-          <span className="material-symbols-outlined text-[#16a34a] text-[20px]">check_circle</span>
+          <CheckCircle2 className="w-5 h-5 text-[#16a34a] shrink-0" />
           <span>{toastMsg}</span>
         </div>
       )}
@@ -140,7 +141,7 @@ function BrowseContent() {
       {/* Page Header */}
       <div className="flex flex-col gap-3 mb-8">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e4f1ff] text-[#0284c7] text-xs font-bold uppercase tracking-wider w-fit">
-          <span className="material-symbols-outlined text-[16px]">shopping_bag</span>
+          <ShoppingBag className="w-4 h-4 shrink-0" />
           <span>Direct Campus Marketplace</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -219,7 +220,7 @@ function BrowseContent() {
       {filteredProducts.length === 0 ? (
         <div className="py-20 px-6 text-center bg-white rounded-3xl border border-dashed border-slate-200 shadow-sm max-w-xl mx-auto my-6">
           <div className="w-16 h-16 rounded-full bg-orange-50 text-[#f95721] flex items-center justify-center mx-auto mb-4">
-            <span className="material-symbols-outlined text-[32px]">storefront</span>
+            <Store className="w-8 h-8 shrink-0" />
           </div>
           <h3 className="font-extrabold text-slate-900 text-xl">No Campus Listings Yet</h3>
           <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto mt-2 leading-relaxed">
@@ -229,7 +230,7 @@ function BrowseContent() {
             onClick={() => router.push('/sell')}
             className="inline-flex items-center gap-2 px-6 py-3 mt-6 bg-[#f95721] hover:bg-[#e04815] text-white text-xs font-bold rounded-2xl shadow-md transition-all cursor-pointer"
           >
-            <span className="material-symbols-outlined text-[18px]">add_circle</span>
+            <PlusCircle className="w-[18px] h-[18px] shrink-0" />
             <span>List an Item for Free (₹0)</span>
           </button>
         </div>
@@ -252,7 +253,7 @@ function BrowseContent() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full text-[11px] font-semibold text-slate-800 shadow-sm flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[#16a34a] text-[13px]">verified</span>
+                      <CheckCircle2 className="w-[13px] h-[13px] text-[#16a34a] shrink-0" />
                       <span>Verified</span>
                     </div>
                     {discount > 0 && item.price > 0 && (
@@ -268,7 +269,7 @@ function BrowseContent() {
                   <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1">
                     <span className="font-bold text-[#f95721] uppercase tracking-wider text-[10px]">{item.category}</span>
                     <span className="truncate max-w-[130px] flex items-center gap-0.5">
-                      <span className="material-symbols-outlined text-[13px]">location_on</span>
+                      <MapPin className="w-[13px] h-[13px] shrink-0" />
                       {item.location ? item.location.split('/')[0].trim() : 'BMSIT Campus'}
                     </span>
                   </div>
@@ -303,7 +304,9 @@ function BrowseContent() {
                     className="py-2 px-3.5 rounded-xl bg-slate-900 hover:bg-[#f95721] text-white font-bold text-xs shadow-sm transition-all flex items-center gap-1.5 cursor-pointer"
                   >
                     <span>Express Interest</span>
-                    <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -320,11 +323,11 @@ function BrowseContent() {
               onClick={() => setSelectedItem(null)}
               className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition-colors"
             >
-              <span className="material-symbols-outlined text-[18px]">close</span>
+              <X className="w-[18px] h-[18px] shrink-0" />
             </button>
 
             <div className="flex items-center gap-2 mb-4 text-[#16a34a] font-bold text-xs uppercase tracking-wider">
-              <span className="material-symbols-outlined text-[18px]">verified_user</span>
+              <ShieldCheck className="w-[18px] h-[18px] shrink-0" />
               <span>Peer-to-Peer Safe Meetup</span>
             </div>
 
@@ -377,7 +380,7 @@ function BrowseContent() {
                   type="submit"
                   className="w-full py-3 px-4 rounded-xl bg-[#f95721] hover:bg-[#e04815] text-white font-extrabold text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span className="material-symbols-outlined text-[18px]">send</span>
+                  <Send className="w-[18px] h-[18px] shrink-0" />
                   <span>Send Reservation Ping to Seller</span>
                 </button>
               </div>

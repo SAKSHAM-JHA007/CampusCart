@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
+import { ShieldCheck, User, Mail, Phone, GraduationCap, Shield } from 'lucide-react';
 
 function LoginFormContent() {
   const router = useRouter();
@@ -76,7 +77,7 @@ function LoginFormContent() {
     <div className="w-full max-w-md bg-white rounded-3xl p-8 shadow-xl border border-slate-100 relative">
       <div className="text-center mb-6">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#dff6e9] text-[#198754] text-xs font-bold uppercase tracking-wider mb-2">
-          <span className="material-symbols-outlined text-[15px]">verified_user</span>
+          <ShieldCheck className="w-4 h-4 shrink-0" />
           <span>Student Verification</span>
         </div>
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Verify Your Student Status</h1>
@@ -90,7 +91,7 @@ function LoginFormContent() {
             Full Name <span className="text-[#f95721]">*</span>
           </label>
           <div className="relative flex items-center">
-            <span className="material-symbols-outlined absolute left-3 text-slate-400 text-[18px]">person</span>
+            <User className="absolute left-3 text-slate-400 w-[18px] h-[18px] shrink-0" />
             <input
               type="text"
               id="studentName"
@@ -109,7 +110,7 @@ function LoginFormContent() {
             College Email ID <span className="text-[#f95721]">*</span>
           </label>
           <div className="relative flex items-center">
-            <span className="material-symbols-outlined absolute left-3 text-slate-400 text-[18px]">mail</span>
+            <Mail className="absolute left-3 text-slate-400 w-[18px] h-[18px] shrink-0" />
             <input
               type="email"
               id="studentEmail"
@@ -129,7 +130,7 @@ function LoginFormContent() {
             Phone Number <span className="text-[#f95721]">*</span>
           </label>
           <div className="relative flex items-center">
-            <span className="material-symbols-outlined absolute left-3 text-slate-400 text-[18px]">call</span>
+            <Phone className="absolute left-3 text-slate-400 w-[18px] h-[18px] shrink-0" />
             <input
               type="tel"
               id="studentPhone"
@@ -150,7 +151,7 @@ function LoginFormContent() {
             Year of Study <span className="text-[#f95721]">*</span>
           </label>
           <div className="relative flex items-center">
-            <span className="material-symbols-outlined absolute left-3 text-slate-400 text-[18px]">school</span>
+            <GraduationCap className="absolute left-3 text-slate-400 w-[18px] h-[18px] shrink-0" />
             <select
               id="studentYear"
               value={formData.year}
@@ -169,7 +170,7 @@ function LoginFormContent() {
 
         {/* Verification Guarantee */}
         <div className="p-3 bg-amber-50/80 border border-amber-100 rounded-xl flex items-start gap-2.5 mt-1">
-          <span className="material-symbols-outlined text-amber-600 text-[18px] shrink-0 mt-0.5">shield</span>
+          <Shield className="text-amber-600 w-[18px] h-[18px] shrink-0 mt-0.5" />
           <p className="text-[11px] text-amber-800 leading-tight">
             Your details are never shared with external advertisers. All listings and chats stay within verified students.
           </p>
@@ -182,7 +183,9 @@ function LoginFormContent() {
           className="w-full py-3 px-4 rounded-xl bg-[#f95721] hover:bg-[#e04815] text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer mt-2 disabled:opacity-50"
         >
           <span>{loading ? 'Verifying...' : 'Verify & Continue to CampusCart'}</span>
-          <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
         </button>
       </form>
     </div>
@@ -210,8 +213,10 @@ export default function LoginPage() {
             Campus<span className="text-[#f95721]">Cart</span>
           </span>
         </Link>
-        <Link href="/" className="text-sm font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1 transition-colors">
-          <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+        <Link href="/" className="text-sm font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1.5 transition-colors">
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
           <span>Back to Home</span>
         </Link>
       </header>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
+import { Search, PlusCircle, User, Handshake, ShieldCheck, LogOut } from 'lucide-react';
 
 export default function Header() {
   const router = useRouter();
@@ -83,7 +84,7 @@ export default function Header() {
         {/* Search & User Profile */}
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center bg-slate-50 border border-slate-200/80 rounded-full px-4 py-2 w-72 lg:w-80 transition-all focus-within:border-slate-400 focus-within:bg-white focus-within:shadow-sm">
-            <span className="material-symbols-outlined text-slate-400 text-[18px] mr-2 shrink-0">search</span>
+            <Search className="w-[18px] h-[18px] text-slate-400 mr-2 shrink-0" />
             <input
               type="text"
               placeholder="Search books, mattresses, appliances..."
@@ -100,7 +101,7 @@ export default function Header() {
               href="/sell"
               className="hidden sm:flex items-center gap-1.5 py-2 px-4 rounded-xl bg-[#f95721] hover:bg-[#e04815] text-white font-bold text-xs shadow-sm transition-all"
             >
-              <span className="material-symbols-outlined text-[16px]">add_circle</span>
+              <PlusCircle className="w-4 h-4 shrink-0" />
               <span>Sell Gear</span>
             </Link>
           )}
@@ -123,7 +124,7 @@ export default function Header() {
                   {student.name.trim().charAt(0).toUpperCase()}
                 </span>
               ) : (
-                <span className="material-symbols-outlined text-[20px]">person</span>
+                <User className="w-5 h-5 text-slate-600 shrink-0" />
               )}
             </button>
 
@@ -142,7 +143,7 @@ export default function Header() {
                   onClick={() => setShowProfileMenu(false)}
                   className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
                 >
-                  <span className="material-symbols-outlined text-[16px]">account_circle</span>
+                  <User className="w-4 h-4 text-slate-500 shrink-0" />
                   <span>My Profile &amp; Listings</span>
                 </Link>
                 <Link
@@ -150,7 +151,7 @@ export default function Header() {
                   onClick={() => setShowProfileMenu(false)}
                   className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
                 >
-                  <span className="material-symbols-outlined text-[16px]">handshake</span>
+                  <Handshake className="w-4 h-4 text-slate-500 shrink-0" />
                   <span>Reserved Meetups</span>
                 </Link>
                 <Link
@@ -158,7 +159,7 @@ export default function Header() {
                   onClick={() => setShowProfileMenu(false)}
                   className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
                 >
-                  <span className="material-symbols-outlined text-[16px]">admin_panel_settings</span>
+                  <ShieldCheck className="w-4 h-4 text-slate-500 shrink-0" />
                   <span>Campus Admin</span>
                 </Link>
                 <div className="border-t border-slate-100 mt-1 pt-1">
@@ -166,7 +167,7 @@ export default function Header() {
                     onClick={handleLogout}
                     className="w-full flex items-center gap-2 px-4 py-2 text-xs font-semibold text-red-600 hover:bg-red-50 text-left"
                   >
-                    <span className="material-symbols-outlined text-[16px]">logout</span>
+                    <LogOut className="w-4 h-4 text-red-500 shrink-0" />
                     <span>Log Out</span>
                   </button>
                 </div>

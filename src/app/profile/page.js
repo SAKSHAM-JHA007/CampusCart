@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { CheckCircle2, Package, Plus, Handshake } from 'lucide-react';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -62,7 +63,7 @@ export default function ProfilePage() {
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
                 <h1 className="text-2xl font-extrabold text-slate-900">{student.name}</h1>
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#dff6e9] text-[#16a34a] text-xs font-bold w-fit mx-auto sm:mx-0">
-                  <span className="material-symbols-outlined text-[14px]">verified</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                   <span>Verified Student</span>
                 </span>
               </div>
@@ -94,14 +95,14 @@ export default function ProfilePage() {
           <div className="mb-10">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-                <span className="material-symbols-outlined text-[#f95721] text-[22px]">inventory_2</span>
+                <Package className="text-[#f95721] w-[22px] h-[22px] shrink-0" />
                 <span>My Active Listings ({myProducts.length})</span>
               </h2>
               <button
                 onClick={() => router.push('/sell')}
                 className="py-2 px-3.5 rounded-xl bg-[#f95721] hover:bg-[#e04815] text-white text-xs font-bold shadow-sm flex items-center gap-1 cursor-pointer transition-all"
               >
-                <span className="material-symbols-outlined text-[16px]">add</span>
+                <Plus className="w-4 h-4 shrink-0" />
                 <span>List New Item</span>
               </button>
             </div>
@@ -144,7 +145,7 @@ export default function ProfilePage() {
           {/* Section: Reserved Meetups */}
           <div>
             <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2 mb-4">
-              <span className="material-symbols-outlined text-[#16a34a] text-[22px]">handshake</span>
+              <Handshake className="text-[#16a34a] w-[22px] h-[22px] shrink-0" />
               <span>My Meetup Reservations ({myInterests.length})</span>
             </h2>
 

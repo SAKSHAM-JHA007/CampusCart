@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Handshake, Inbox, MapPin } from 'lucide-react';
 
 export default function InterestsPage() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function InterestsPage() {
         <div className="max-w-[1100px] mx-auto px-6">
           <div className="mb-8">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#dff6e9] text-[#16a34a] text-xs font-bold uppercase tracking-wider mb-2">
-              <span className="material-symbols-outlined text-[16px]">handshake</span>
+              <Handshake className="w-4 h-4 shrink-0" />
               <span>Campus Physical Handover</span>
             </div>
             <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -53,7 +54,7 @@ export default function InterestsPage() {
 
           {interests.length === 0 ? (
             <div className="py-20 px-6 text-center bg-white rounded-3xl border border-dashed border-slate-200 shadow-sm max-w-lg mx-auto">
-              <span className="material-symbols-outlined text-slate-300 text-[48px] mb-2">inbox</span>
+              <Inbox className="text-slate-300 w-12 h-12 mb-2 mx-auto" />
               <h3 className="font-extrabold text-slate-900 text-lg">No Active Reservations</h3>
               <p className="text-xs text-slate-500 max-w-sm mx-auto mt-1">
                 When you click "Express Interest" on an item, your safe meetup request appears here.
@@ -63,7 +64,9 @@ export default function InterestsPage() {
                 className="inline-flex items-center gap-2 px-5 py-2.5 mt-5 bg-[#0284c7] text-white text-xs font-bold rounded-xl shadow-sm hover:bg-[#0369a1] transition-all cursor-pointer"
               >
                 <span>Browse Marketplace</span>
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
               </button>
             </div>
           ) : (
@@ -79,7 +82,7 @@ export default function InterestsPage() {
                     <h3 className="text-lg font-extrabold text-slate-900">{item.title}</h3>
                     <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-slate-600">
                       <span className="flex items-center gap-1 font-semibold text-slate-800">
-                        <span className="material-symbols-outlined text-[16px] text-slate-400">location_on</span>
+                        <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
                         {item.meetupSpot}
                       </span>
                       <span>Seller: <b>{item.seller}</b></span>

@@ -65,4 +65,30 @@ assert.strictEqual(filterItems(mockItems, 'Donate', '').length, 1);
 assert.strictEqual(filterItems(mockItems, 'all', 'lamp').length, 1);
 assert.strictEqual(filterItems(mockItems, 'all', 'nonexistent').length, 0);
 
+// 4. Icon Ligature Leak Prevention Check (Ensure no raw material-symbols-outlined spans remain in src or public)
+const fs = require('fs');
+const path = require('path');
+
+function checkNoMaterialSymbolsSpans(dir) {
+  const files = fs.readdirSync(dir, { withFileTypes: true });
+  for (const file of files) {
+    const fullPath = path.join(dir, file.name);
+    if (file.isDirectory()) {
+      if (file.name !== '.next' && file.name !== 'node_modules') {
+        checkNoMaterialSymbolsSpans(fullPath);
+      }
+    } else if (/\.(jsx?|html)$/.test(file.name)) {
+      const content = fs.readFileSync(fullPath, 'utf8');
+      assert.strictEqual(
+        content.includes('material-symbols-outlined text-') || content.includes('class="material-symbols-outlined"') || content.includes('className="material-symbols-outlined"'),
+        false,
+        `File ${fullPath} contains raw material-symbols-outlined span which leaks text ligatures!`
+      );
+    }
+  }
+}
+
+checkNoMaterialSymbolsSpans(path.join(__dirname, '..', 'src'));
+checkNoMaterialSymbolsSpans(path.join(__dirname, '..', 'public'));
+
 console.log('✅ [CampusCart Self-Check Passed] All core logic tests passed with 0 failures.');

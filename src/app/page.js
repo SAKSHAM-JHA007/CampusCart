@@ -94,7 +94,9 @@ export default function Home() {
                 <div className="flex items-center justify-between">
                   <h3 className="text-xl font-extrabold text-[#0284c7] tracking-tight">BUY</h3>
                   <div className="arrow-btn w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#0284c7] shadow-sm transition-transform">
-                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
                   </div>
                 </div>
                 <p className="text-xs text-slate-600 font-medium leading-relaxed">
@@ -119,7 +121,9 @@ export default function Home() {
                 <div className="flex items-center justify-between">
                   <h3 className="text-xl font-extrabold text-[#16a34a] tracking-tight">SELL</h3>
                   <div className="arrow-btn w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#16a34a] shadow-sm transition-transform">
-                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
                   </div>
                 </div>
                 <p className="text-xs text-slate-600 font-medium leading-relaxed">
@@ -144,7 +148,9 @@ export default function Home() {
                 <div className="flex items-center justify-between">
                   <h3 className="text-xl font-extrabold text-[#f95721] tracking-tight">DONATE</h3>
                   <div className="arrow-btn w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#f95721] shadow-sm transition-transform">
-                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
                   </div>
                 </div>
                 <p className="text-xs text-slate-600 font-medium leading-relaxed">
